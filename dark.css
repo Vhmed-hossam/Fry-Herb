@@ -1,0 +1,67 @@
+.dmode{
+  background-color: #00130D;
+  color: #F1FFEE;
+}
+.dmode .sidebar{
+  background-color: #012F21;
+}
+.dmode .whito {
+  color: #F1FFEE;
+}
+.dmode .toggle-button {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  width: 40px;
+  height: 40px;
+  background-color: #014831;
+  border: none;
+  cursor: pointer;
+  z-index: 1000;
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+  border-radius: 50%;
+}
+.dmode .sidebar ul li a i:hover {
+  color: #F1FFEE;
+}
+
+.dmode .frymain:hover{
+  color: #72FF56;
+}
+.dmode .thep{
+  color: #B3FAE3;
+}
+
+.dmode .sidebar ul li a i:hover {
+  color: #9a9a9a;
+}
+
+.dmode .selected {
+  border-radius: 100px;
+  background: #3ac71e;
+}
+.dmode .close{
+  color: #F1FFEE;
+}
+
+.dmode .fa-x{
+  color: #F1FFEE
+  ;
+}
+.dmode .search-bar:focus::placeholder{
+  color: #a2a2a2;
+}
+.dmode .search-bar{
+  padding: 13px;
+  width: 100%;
+  border: 0px;
+  border-radius: 20px;
+  margin: auto;
+ border: 2px solid #015F41;
+ background-color: transparent;
+  transition: .3s ease all;
+color: #F1FFEE;
+}
+.dmode .search-bar::placeholder{
+  color: #F1FFEE;
+}
