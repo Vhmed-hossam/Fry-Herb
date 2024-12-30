@@ -247,6 +247,3 @@ function removeCard(cardId) {
     card.remove();
   }
 }
-  }
-}   
-});
