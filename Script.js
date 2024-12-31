@@ -10,6 +10,20 @@ const navAboutBtn = document.getElementById("nav-about");
 const navSettingsBtn = document.getElementById("nav-settings");
 const navHomeBtn = document.getElementById("nav-home");
 
+function showLoadingOverlay() {
+  const loadingOverlay = document.createElement('div');
+  loadingOverlay.className = 'loading-overlay';
+  loadingOverlay.innerHTML = '<div class="spinner"></div>';
+  document.body.appendChild(loadingOverlay);
+}
+
+function hideLoadingOverlay() {
+  const loadingOverlay = document.querySelector('.loading-overlay');
+  if (loadingOverlay) {
+    loadingOverlay.remove();
+  }
+}
+
 toggleButton.addEventListener("click", () => {
   sidebar.classList.add("show");
   toggleButton.classList.add("hide");
@@ -44,6 +58,8 @@ if (localStorage.getItem("darkMode") === "enabled") {
 }
 
 function DarkMode() {
+  showLoadingOverlay();
+   hideLoadingOverlay();
   Body.classList.toggle("dmode");
   if (Body.classList.contains("dmode")) {
     localStorage.setItem("darkMode", "enabled");
@@ -52,9 +68,11 @@ function DarkMode() {
     localStorage.setItem("darkMode", "disabled");
     dmbtn.innerHTML = "Dark Mode";
   }
+ 
 }
 
 navSearchBtn.addEventListener("click", () => {
+  showLoadingOverlay();
   maincnt.innerHTML = `
     <section id="search" class="search">
       <div class="container serc">
@@ -73,9 +91,11 @@ navSearchBtn.addEventListener("click", () => {
   searchbtn.addEventListener("click", () => {
     getRecipes(searchresults);
   });
+  hideLoadingOverlay();
 });
 
 navAboutBtn.addEventListener("click", () => {
+  showLoadingOverlay();
   maincnt.innerHTML = `
     <section id="About" class="about">
       <div class="container">
@@ -126,9 +146,11 @@ navAboutBtn.addEventListener("click", () => {
         </div>
       </div>
     </section>`;
+  hideLoadingOverlay();
 });
 
 navSettingsBtn.addEventListener("click", () => {
+  showLoadingOverlay();
   maincnt.innerHTML = `
     <section id="Settings" class="settings">
       <div class="container">
@@ -140,16 +162,18 @@ navSettingsBtn.addEventListener("click", () => {
             <div class="text-center">
               <div class="m-auto">
                 <p>Mode</p>
-                <button id="dm" class="btn1" onclick="DarkMode()">Dark Mode</button>
+                <button id="dm" class="btn1" onclick="DarkMode()">Switch Modes</button>
               </div>
             </div>
           </div>
         </div>
       </div>
     </section>`;
+  hideLoadingOverlay();
 });
 
 navHomeBtn.addEventListener("click", () => {
+  showLoadingOverlay();
   maincnt.innerHTML = `
     <section id="home" class="home">
       <div class="container">
@@ -206,6 +230,7 @@ navHomeBtn.addEventListener("click", () => {
         </div>
       </div>
     </section>`;
+  hideLoadingOverlay();
 });
 
 async function getRecipes(searchresults) {
@@ -215,7 +240,7 @@ async function getRecipes(searchresults) {
       alert("Please enter a search value");
       return;
     }
-    searchresults.innerHTML = '<div class="loading">Loading...</div>'; // Show loading indicator
+    showLoadingOverlay();
     const response = await fetch(`https://forkify-api.herokuapp.com/api/search?q=${searchval}`);
     const { recipes } = await response.json();
     if (!recipes || recipes.length === 0) {
@@ -227,10 +252,7 @@ async function getRecipes(searchresults) {
     console.log("Failed to fetch recipes:", error);
     searchresults.innerHTML = '<div class="error">Failed to fetch recipes. Please try again later.</div>';
   } finally {
-    const loadingIndicator = searchresults.querySelector('.loading');
-    if (loadingIndicator) {
-      loadingIndicator.remove(); // Remove loading indicator
-    }
+    hideLoadingOverlay();
   }
 }
 
@@ -279,3 +301,8 @@ function removeCard(cardId) {
     card.remove();
   }
 }
+
+window.addEventListener('load', () => {
+  showLoadingOverlay();
+  hideLoadingOverlay();
+});
