@@ -3,6 +3,7 @@
   padding: 0;
   box-sizing: border-box;
   font-family: cursive;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -174,22 +175,6 @@ align-items: center;
   position: absolute;
   z-index: 100000002;
 }
-.spinner1 {
-  animation: spin1 1.5s infinite linear;
-  transform: translateX(100px)
-}
-.spinner2 {
-  animation: spin2 1.5s infinite linear;
-  transform: translateY(100px)
-}
-.spinner3 {
-  animation: spin3 1.5s infinite linear;
-  transform: translateX(-100px)
-}
-.spinner4 {
-  animation: spin4 1.5s infinite linear;
-  transform: translateY(-100px)
-}
 .frymain{
 text-decoration: underline;
 color: #00865b;
@@ -263,12 +248,13 @@ color: #0C1A09;
   border: none;
   border-radius: 15px;
   cursor: pointer;
-  position: absolute;
-  transform: translateX(-7px);
+ transform: translateX(1050px);
+  transform: translateY(-50px); 
+  transform: translate(1052px, -54px);
   margin-top: 7px;
   padding-left: 20px;
   padding-right: 20px;
-  transition: 0.3s ease all;;
+  transition: 0.3s ease all;
 }
 .emailbtn i{
   color: #F1FFEE;
@@ -346,6 +332,6 @@ img{
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
