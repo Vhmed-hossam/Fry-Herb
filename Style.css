@@ -257,7 +257,22 @@ color: #0C1A09;
 .searchbtn i{
   color: #F1FFEE;
 }
-
+.emailbtn{
+  padding: 8px;
+  background-color: #03EDA3;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  position: absolute;
+  transform: translateX(-7px);
+  margin-top: 7px;
+  padding-left: 20px;
+  padding-right: 20px;
+  transition: 0.3s ease all;;
+}
+.emailbtn i{
+  color: #F1FFEE;
+}
 .search-bar::placeholder{
   color: #0C1A09;
 }
@@ -304,6 +319,10 @@ margin-right: 20px;
   border-radius: 20px;
   padding: 20px;
 }
+img{
+  user-select: none;
+}
+
 img{
   user-select: none;
 }
