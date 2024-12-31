@@ -22,12 +22,26 @@ closeButton.addEventListener("click", () => {
   closeButton.classList.remove("show");
 });
 
+document.addEventListener("click", (event) => {
+  if (!sidebar.contains(event.target) && !toggleButton.contains(event.target)) {
+    sidebar.classList.remove("show");
+    toggleButton.classList.remove("hide");
+    closeButton.classList.remove("show");
+  }
+});
+
 navItems.forEach((item) => {
   item.addEventListener("click", () => {
     navItems.forEach((navItem) => navItem.classList.remove("selected"));
     item.classList.add("selected");
   });
 });
+
+if (localStorage.getItem("darkMode") === "enabled") {
+  Body.classList.add("dmode");
+} else {
+  Body.classList.remove("dmode");
+}
 
 function DarkMode() {
   Body.classList.toggle("dmode");
@@ -66,33 +80,44 @@ navAboutBtn.addEventListener("click", () => {
     <section id="About" class="about">
       <div class="container">
         <div class="row">
-          <div class="d-flex justify-content-between align-items-center">
-            <h2>The <span class="frymain">Developer</span></h2>
-            <img src="fry&herb/Fry&Herb web logo smallest.png" alt="Fry&Herb Logo" class="img-fluid">
+          <div class="d-flex justify-content-between align-items-center flex-wrap">
+            <h2 class="col-12 col-md-6">The <span class="frymain">Developer</span></h2>
           </div>
           <div class="col-12 mt-4">
-            <div class="col-md-12 m-auto borders d-flex align-items-center">
-              <div><img src="fry&herb/Fry&Herb web main.png" alt="Developer 3" class="img-fluid rounded-circle mb-2"></div>
-              <div class="ms-3 col-8">
+            <div class="col-md-12 m-auto borders d-flex align-items-center flex-wrap">
+              <div class="col-12 col-md-4 text-center">
+                <img src="fry&herb/Fry&Herb web main.png" alt="Developer 3" class="img-fluid rounded-circle mb-2">
+              </div>
+              <div class="ms-3 col-12 col-md-4 text-center text-md-start">
                 <h2>Vhmed</h2>
                 <p class="frymain">Front-end Developer - Ui/UX Designer</p>
               </div>
-              <div class="d-flex col-4">
-                <a href="https://www.behance.net/Ahmed_Hossam16" class="text-decoration-none btn1 m-auto">
-                  <p style="color: #053eff;"><i class="fa-brands fa-square-behance"></i>Behance</p>
+              <div class="d-flex col-12 col-md-4 justify-content-center justify-content-lg-center">
+                <a href="https://www.behance.net/Ahmed_Hossam16" class="text-decoration-none btn1 m-2">
+                  <i class="fa-brands fa-square-behance"></i> Behance
                 </a>
-                <a href="https://github.com/Vhmed-hossam" class="text-decoration-none btn1 m-auto">
-                  <p style="color: #FFF;"><i class="fa-brands fa-square-github"></i>Github</p>
+                <a href="https://github.com/Vhmed-hossam" class="text-decoration-none btn1 m-2">
+                  <i class="fa-brands fa-square-github"></i> Github
                 </a>
+              </div>
+              <div class="d-flex col-md-8 justify-content-center justify-content-lg-center">
+                <p>
+                  Young and eager frontend developer with a keen interest in
+                  creating eye-catching and easy-to-use designs. Shows skill in
+                  designing and coding flexible and intuitive web applications
+                  using current frameworks and technologies like React.js.
+                  Stands out in blending creative UI/UX designs with high
+                  performance to give users a top-quality experience.
+                </p>
               </div>
             </div>
           </div>
           <div class="container mt-5">
             <h2 class="mb-2">Message Me</h2>
-            <div>
-              <input type="text" placeholder="Send a Feedback!" class="search-bar" spellcheck="false" id="searchval" />
-              <a href="https://mail.google.com/mail/u/0/#inbox?compose=CllgCJqWgZzQCWKzQKwsCtjwTVbDmSkctlbHcQtGSsJjLtljmVGMgWRsccVzXtgQHjPNwmvrMLB">
-                <button class="searchbtn" id="searchbtn">
+            <div class="d-flex flex-wrap position-relative z-n1">
+              <input type="text" placeholder="Send a Feedback!" class="search-bar col-12 col-md-8 mb-2 mb-md-0" spellcheck="false" id="searchval">
+              <a href="https://mail.google.com/mail/u/0/#inbox?compose=CllgCJqWgZzQCWKzQKwsCtjwTVbDmSkctlbHcQtGSsJjLtljmVGMgWRsccVzXtgQHjPNwmvrMLB" class="col-12 col-md-4">
+                <button class="emailbtn position-absolute top-0 end-0" id="searchbtn">
                   <i class="fa-solid fa-envelope"></i>
                 </button>
               </a>
@@ -115,7 +140,7 @@ navSettingsBtn.addEventListener("click", () => {
             <div class="text-center">
               <div class="m-auto">
                 <p>Mode</p>
-                <button id="dm" class="btn1" onclick="DarkMode()">Change mode</button>
+                <button id="dm" class="btn1" onclick="DarkMode()">Dark Mode</button>
               </div>
             </div>
           </div>
@@ -190,6 +215,7 @@ async function getRecipes(searchresults) {
       alert("Please enter a search value");
       return;
     }
+    searchresults.innerHTML = '<div class="loading">Loading...</div>'; // Show loading indicator
     const response = await fetch(`https://forkify-api.herokuapp.com/api/search?q=${searchval}`);
     const { recipes } = await response.json();
     if (!recipes || recipes.length === 0) {
@@ -199,6 +225,12 @@ async function getRecipes(searchresults) {
     }
   } catch (error) {
     console.log("Failed to fetch recipes:", error);
+    searchresults.innerHTML = '<div class="error">Failed to fetch recipes. Please try again later.</div>';
+  } finally {
+    const loadingIndicator = searchresults.querySelector('.loading');
+    if (loadingIndicator) {
+      loadingIndicator.remove(); // Remove loading indicator
+    }
   }
 }
 
