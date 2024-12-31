@@ -148,7 +148,7 @@ navAboutBtn.addEventListener("click", () => {
         </div>
       </section>`;
     hideLoadingOverlay();
-  }); // Simulate loading time
+  }); 
 });
 
 navSettingsBtn.addEventListener("click", () => {
@@ -165,7 +165,7 @@ navSettingsBtn.addEventListener("click", () => {
               <div class="text-center">
                 <div class="m-auto">
                   <p>Mode</p>
-                  <button id="dm" class="btn1" onclick="DarkMode()">Dark Mode</button>
+                  <button id="dm" class="btn1" onclick="DarkMode()">Switch Modes</button>
                 </div>
               </div>
             </div>
@@ -173,7 +173,7 @@ navSettingsBtn.addEventListener("click", () => {
         </div>
       </section>`;
     hideLoadingOverlay();
-  }); // Simulate loading time
+  });
 });
 
 navHomeBtn.addEventListener("click", () => {
