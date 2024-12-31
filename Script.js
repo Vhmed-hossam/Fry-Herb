@@ -113,10 +113,10 @@ navAboutBtn.addEventListener("click", () => {
                   <p class="frymain">Front-end Developer - Ui/UX Designer</p>
                 </div>
                 <div class="d-flex col-12 col-md-4 justify-content-center justify-content-lg-center">
-                  <a href="https://www.behance.net/Ahmed_Hossam16" class="text-decoration-none btn1 m-2">
+                  <a href="https://www.behance.net/Ahmed_Hossam16" class="text-decoration-none btn1 m-2" target="_blank">
                     <i class="fa-brands fa-square-behance"></i> Behance
                   </a>
-                  <a href="https://github.com/Vhmed-hossam" class="text-decoration-none btn1 m-2">
+                  <a href="https://github.com/Vhmed-hossam" class="text-decoration-none btn1 m-2" target="_blank">
                     <i class="fa-brands fa-square-github"></i> Github
                   </a>
                 </div>
@@ -135,9 +135,9 @@ navAboutBtn.addEventListener("click", () => {
             <div class="container mt-5">
               <h2 class="mb-2">Message Me</h2>
               <div class="d-flex flex-wrap ">
-                <a class="col-12 col-md-12">
+                <a class="col-12 col-md-12" target="_blank">
                 <input type="text" placeholder="Send a Feedback!" class="search-bar col-12 col-md-8 mb-2 mb-md-0" spellcheck="false" id="searchval"></a>
-                <a href="https://mail.google.com/mail/u/0/#inbox?compose=CllgCJqWgZzQCWKzQKwsCtjwTVbDmSkctlbHcQtGSsJjLtljmVGMgWRsccVzXtgQHjPNwmvrMLB">
+                <a href="https://mail.google.com/mail/u/0/#inbox?compose=CllgCJqWgZzQCWKzQKwsCtjwTVbDmSkctlbHcQtGSsJjLtljmVGMgWRsccVzXtgQHjPNwmvrMLB" target="_blank">
                   <button class="emailbtn" id="searchbtn">
                     <i class="fa-solid fa-envelope"></i>
                   </button>
@@ -285,10 +285,10 @@ function searchres(data, searchresults) {
                       <i class="fa-solid fa-x frymain2" style="color: #03EDA3;"></i>
                     </button>
                   </div>
-                  <p>By <a href="${recipe.publisher_url}" class="frymain">${recipe.publisher}</a></p>
+                  <p>By <a href="${recipe.publisher_url}" class="frymain" target="_blank">${recipe.publisher}</a></p>
                 </div>
                 <div>
-                  <a href="${recipe.source_url}">
+                  <a href="${recipe.source_url}" target="_blank">
                     <button class="btn1">Get Full Recipe</button>
                   </a>
                 </div>
